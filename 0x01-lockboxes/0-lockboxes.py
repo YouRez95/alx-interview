@@ -12,6 +12,10 @@ def canUnlockAll(boxes):
     """
         canUnlockAll
     """
+    if not boxes:
+        return True
+    if isinstance(boxes, list) and len(boxes) == 1:
+        return True
     copied_boxes = copy.deepcopy(boxes)
     openBox(copied_boxes, 0)
     for ele in copied_boxes:

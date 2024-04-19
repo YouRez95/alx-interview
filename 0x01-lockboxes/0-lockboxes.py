@@ -5,7 +5,7 @@
     may contain keys to the other boxes.
     Write a method that determines if all the boxes can be opened.
 """
-# import copy
+import copy
 
 
 def canUnlockAll(boxes):
@@ -16,10 +16,10 @@ def canUnlockAll(boxes):
         return True
     if isinstance(boxes, list) and len(boxes) == 1:
         return True
-    # copied_boxes = copy.deepcopy(boxes)
-    openBox(boxes, 0)
+    copied_boxes = copy.deepcopy(boxes)
+    openBox(copied_boxes, 0)
     # print(copied_boxes)
-    for ele in boxes:
+    for ele in copied_boxes:
         if not ele or ele[0] != -1:
             return False
     return True
@@ -29,7 +29,7 @@ def openBox(boxes, index):
     """
         openBox
     """
-    if index == -1 or index > len(boxes):
+    if index == -1 or index >= len(boxes):
         return
     if not boxes[index]:
         boxes[index].append(-1)

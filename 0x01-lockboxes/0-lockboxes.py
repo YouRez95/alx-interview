@@ -8,7 +8,7 @@
 import copy
 import sys
 
-sys.setrecursionlimit(1010)
+sys.setrecursionlimit(1500)
 
 
 def canUnlockAll(boxes):

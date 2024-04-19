@@ -6,6 +6,9 @@
     Write a method that determines if all the boxes can be opened.
 """
 import copy
+import sys
+
+sys.setrecursionlimit(1010)
 
 
 def canUnlockAll(boxes):

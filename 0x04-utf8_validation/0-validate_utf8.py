@@ -20,7 +20,6 @@ def validUTF8(data: List) -> bool:
         else:
             binary = binary[-8:]
         binary_data.append(binary)
-
     num_bytes = 0
     is_valid = True
     for j in range(len(binary_data)):
@@ -42,32 +41,27 @@ def validUTF8(data: List) -> bool:
 
         if binary_data[j][0] == '0':
             continue
-        elif (binary_data[j][0] == '1'
-              and binary_data[j][1] == '1'
-              and binary_data[j][2] == '0'):
+        elif (binary_data[j][0] == '1' and binary_data[j][1] == '1' and
+              binary_data[j][2] == '0'):
             if j == len(binary_data) - 1:
                 is_valid = False
                 break
             num_bytes = 1
             continue
-        elif (binary_data[j][0] == '1'
-              and binary_data[j][1] == '1'
-              and binary_data[j][2] == '1'
-              and binary_data[j][2] == '0'):
+        elif (binary_data[j][0] == '1' and binary_data[j][1] == '1' and
+              binary_data[j][2] == '1' and binary_data[j][2] == '0'):
             if j == len(binary_data) - 1:
                 is_valid = False
                 break
-            num_bytes == 2
+            num_bytes = 2
             continue
-        elif (binary_data[j][0] == '1'
-              and binary_data[j][1] == '1'
-              and binary_data[j][2] == '1'
-              and binary_data[j][3] == '1'
-              and binary_data[j][0] == '0'):
+        elif (binary_data[j][0] == '1' and binary_data[j][1] == '1' and
+              binary_data[j][2] == '1' and binary_data[j][3] == '1' and
+              binary_data[j][4] == '0'):
             if j == len(binary_data) - 1:
                 is_valid = False
                 break
-            num_bytes == 3
+            num_bytes = 3
             continue
         else:
             is_valid = False

@@ -5,6 +5,7 @@
 
 from typing import List
 
+
 def validUTF8(data: List) -> bool:
     '''
         method that determines if a given data set
@@ -12,7 +13,6 @@ def validUTF8(data: List) -> bool:
     '''
     binary_data = []
     for element in data:
-        # print(bin(element))
         binary = bin(element)[2:]
         if len(binary) <= 8:
             for i in range(len(binary), 8):
@@ -20,12 +20,11 @@ def validUTF8(data: List) -> bool:
         else:
             binary = binary[-8:]
         binary_data.append(binary)
-    # print(binary_data)
 
     num_bytes = 0
     is_valid = True
     for j in range(len(binary_data)):
-        # print(binary_data[j:j + num_bytes])
+
         for k in binary_data[j:j + num_bytes]:
             if k[0] != '0' or k[1] != '1':
                 is_valid = False
@@ -47,15 +46,25 @@ def validUTF8(data: List) -> bool:
         elif (binary_data[j][0] == '1'
               and binary_data[j][1] == '1'
               and binary_data[j][2] == '0'):
+            if j == len(binary_data) - 1:
+                is_valid = False
+                break
             num_bytes = 1
             continue
         elif (binary_data[j][0] == '1'
               and binary_data[j][1] == '1'
               and binary_data[j][2] == '1'
               and binary_data[j][2] == '0'):
+            if j == len(binary_data) - 1:
+                is_valid = False
+                break
             num_bytes == 2
             continue
         else:
             is_valid = False
             break
     return is_valid
+
+
+data = [80, 121, 116, 104, 111, 110, 32, 105, 115, 32, 99, 111, 111, 108, 200]
+print(validUTF8(data))

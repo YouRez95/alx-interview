@@ -11,15 +11,13 @@ def validUTF8(data: List) -> bool:
         method that determines if a given data set
         represents a valid UTF-8 encoding
     '''
-    if not data and all(isinstance(x, int) for x in data):
-        return None
     binary_data = []
     for element in data:
         binary = bin(element)[2:]
         if len(binary) <= 8:
-            # for i in range(len(binary), 8):
-            #     binary = '0' + binary
-            binary = '0' * (8 - len(binary)) + binary
+            for i in range(len(binary), 8):
+                binary = '0' + binary
+            # binary = '0' * (8 - len(binary)) + binary
         else:
             binary = binary[-8:]
         binary_data.append(binary)

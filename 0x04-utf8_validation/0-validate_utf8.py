@@ -60,6 +60,16 @@ def validUTF8(data: List) -> bool:
                 break
             num_bytes == 2
             continue
+        elif (binary_data[j][0] == '1'
+              and binary_data[j][1] == '1'
+              and binary_data[j][2] == '1'
+              and binary_data[j][3] == '1'
+              and binary_data[j][0] == '0'):
+            if j == len(binary_data) - 1:
+                is_valid = False
+                break
+            num_bytes == 3
+            continue
         else:
             is_valid = False
             break

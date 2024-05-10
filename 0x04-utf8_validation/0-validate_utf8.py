@@ -26,7 +26,7 @@ def validUTF8(data: List) -> bool:
     for j in range(len(binary_data)):
 
         for k in binary_data[j:j + num_bytes]:
-            if k[0] != '0' or k[1] != '1':
+            if k[0] != '1' or k[1] != '0':
                 is_valid = False
                 break
             else:

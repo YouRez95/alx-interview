@@ -50,7 +50,7 @@ def find_solutions(i, j, board):
         i += 1
         j = -1
     find_solutions(i, j + 1, board)
-    print(path)
 
 
 find_solutions(1, 0, board)
+print(path)

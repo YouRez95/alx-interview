@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-
 '''
     Task:
         n queens
 '''
 
 import sys
+import math
 
 if len(sys.argv) != 2:
     print('Usage: nqueens N')
@@ -24,33 +24,60 @@ if board < 4:
     exit(1)
 
 
-path = [[0, 0]]
+def find_solutions(row, col, solutions):
 
-
-def find_solutions(i, j, board):
     '''
-        n queens by backtracking
+        n-queens problem
     '''
-    if i == board:
+    if row == board:
         return
-    if j == board:
-        last_track = path.pop()
-        i = last_track[0]
-        j = last_track[1] + 1
-    path.append([i, j])
-    if (path[len(path) - 1][1] == path[len(path) - 2][1]
-        or
-            (path[len(path) - 2][0] + 1 == path[len(path) - 1][0]
-             and path[len(path) - 2][1] + 1 == path[len(path) - 1][1])
-        or
-            (path[len(path) - 2][0] + 1 == path[len(path) - 1][0]
-             and path[len(path) - 2][1] - 1 == path[len(path) - 1][1])):
-        path.pop()
+
+    new_place = valid_place(row, col, solutions)
+    # print("valid: ", new_place)
+    if new_place:
+        solutions.append(new_place)
+        # print("add", solutions)
+        if len(solutions) == board:
+            print(solutions)
+            last_path = solutions.pop()
+            find_solutions(last_path[0], last_path[1] + 1, solutions)
+        else:
+            find_solutions(row + 1, 0, solutions)
     else:
-        i += 1
-        j = -1
-    find_solutions(i, j + 1, board)
+        if len(solutions) == 0:
+            return
+        last_path = solutions.pop()
+        # print("remove", solutions)
+        find_solutions(last_path[0], last_path[1] + 1, solutions)
 
 
-find_solutions(1, 0, board)
-print(path)
+def valid_place(row, col, solutions):
+    '''
+        return the valid place
+        else False
+    '''
+    if col == board:
+        return False
+
+    if is_valid(row, col, solutions):
+        return [row, col]
+
+    result = valid_place(row, col + 1, solutions)
+    if result is not False:
+        return result
+
+    return False
+
+
+def is_valid(row, col, solutions):
+    '''
+        check if is valid place
+    '''
+    for path in solutions:
+        if path[1] == col or abs(path[0] - row) == abs(path[1] - col):
+            return False
+    return True
+
+
+solutions = []
+find_solutions(0, 0, solutions)

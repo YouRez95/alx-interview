@@ -7,6 +7,8 @@
 import sys
 import math
 
+sys.setrecursionlimit(5000)
+
 if len(sys.argv) != 2:
     print('Usage: nqueens N')
     exit(1)

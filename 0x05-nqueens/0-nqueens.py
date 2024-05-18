@@ -26,7 +26,7 @@ def find_solutions(board, row, solutions) -> None:
     if row == board:
         print(solutions)
         return
-    print(solutions)
+
     for col in range(board):
         if is_valid(row, col, solutions):
             solutions.append([row, col])

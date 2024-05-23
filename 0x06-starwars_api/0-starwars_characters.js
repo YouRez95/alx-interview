@@ -1,4 +1,4 @@
-#!/Users/mac/.nvm/versions/node/v21.6.2/bin/node
+#!/usr/bin/node
 
 const request = require('request');
 

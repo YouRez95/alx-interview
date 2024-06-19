@@ -16,7 +16,8 @@ def isPrime(n):
     if n == 1:
         return False
     for i in range(2, n):
-        if n % i == 0:
+        result = n / i
+        if int(str(result).split('.')[1]) == 0:
             return False
     return True
 
@@ -26,7 +27,7 @@ def removeMultiplesOfN(n, nums):
     remove multiples of number
     '''
     for num in nums:
-        if num % n == 0:
+        if int(str(num / n).split('.')[1]) == 0:
             nums.remove(num)
     return nums
 

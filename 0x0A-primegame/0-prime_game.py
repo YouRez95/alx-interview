@@ -16,8 +16,7 @@ def isPrime(n):
     if n == 1:
         return False
     for i in range(2, n):
-        result = n / i
-        if int(str(result).split('.')[1]) == 0:
+        if n % i == 0:
             return False
     return True
 
@@ -27,7 +26,7 @@ def removeMultiplesOfN(n, nums):
     remove multiples of number
     '''
     for num in nums:
-        if int(str(num / n).split('.')[1]) == 0:
+        if num % n == 0:
             nums.remove(num)
     return nums
 
@@ -59,6 +58,7 @@ def isWinner(x, nums):
             else:
                 i += 1
         score[winner] += 1
+    print(score)
     if score['Ben'] > score['Maria']:
         return 'Ben'
     elif score['Ben'] < score['Maria']:

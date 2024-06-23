@@ -40,6 +40,8 @@ def isWinner(x, nums):
     Return: name of the player that won the most rounds
     '''
     score = {'Maria': 0, 'Ben': 0}
+    if x <= 0:
+        return 'None'
     for num in nums:
         board = [i for i in range(1, num + 1)]
         if len(board) == 1 and board[0] == 1:
